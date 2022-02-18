@@ -28,6 +28,16 @@ export function SignIn() {
   // creates a function to handle sign in
     // try to call and wait signIn
     // if fails, display an Alert with the title "Erro SignIn" and message "Ocorreu um erro ao tentar logar no app"
+  async function handleSignIn() {
+    try {
+      await signIn();
+    } catch (error) {
+      Alert.alert(
+        'Erro SignIn',
+        'Ocorreu um erro ao tentar logar no app'
+      );
+    }
+  }
 
   return (
     <Container
@@ -74,6 +84,29 @@ export function SignIn() {
               Otherwise, show "Entrar com Twitch"
             </SignInButtonText>
           </SignInButton> */}
+          <SignInButton onPress={handleSignIn}>
+            <SignInButtonIcon>
+              {isLoggingIn 
+                ? 
+                  <ActivityIndicator
+                    color={theme.colors.white}
+                  />
+                : 
+                  <Fontisto 
+                    name="twitch" 
+                    color={theme.colors.white}
+                    size={22}
+                  />
+              }
+            </SignInButtonIcon>
+            <SignInButtonText>
+              {isLoggingIn
+                ? 'Entrando ...'
+                : 'Entrar com Twich'
+              }
+            </SignInButtonText>
+          </SignInButton>
+
         </LoginInfo>
       </Content>
 
